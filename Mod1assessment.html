@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registeration Page</title>
+          <link href="./CustomStyles.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <script type="text/javascript">
+//Function to match passwords
+      function validation() {
+        var s= document.getElementById('pass').value;
+        var a= document.getElementById('cpass').value;
+        console.log(s);
+        console.log(a);
+        if(s!=a)
+        alert("Entered Passwords do not Match");
+      }
+
+// Function to validate DOB
+      function dobfun() {
+              var date= new Date();
+              var year=date.getFullYear();
+              var month=date.getMonth()+1;
+              var dd=date.getDate();
+              var yearmax=2001;
+
+              if(month<10)
+                      {
+                      month='0'+month;
+                      }
+                      if(dd<10)
+                      {
+                      dd=0+""+dd;
+                      }
+              document.getElementById('dob').max=yearmax+"-"+month+"-"+dd;
+      }
+//Function for dropdowns
+
+      type =['Graduation','Post-Graduation'];
+      data= [['B.Tech','BBA','BA','B.Sc'],['M.Tech','MBA','MS','MA','M.Sc']];
+
+      function fillfirst()
+      {
+            var Typevar =document.getElementById('type');
+            for(i=0;i<type.length;i++)
+                {
+                var ele= document.createElement('option');
+                ele.text=type[i];
+                Typevar.add(ele,i+1);
+                }
+      }
+
+
+      function fillsecond()
+      {
+
+      var Typevar =document.getElementById('type');
+      var selectedIdx= Typevar.selectedIndex;
+      var Dataver =document.getElementById('data');
+
+      Dataver.innerText=null;
+
+          for(i=0;i<data[selectedIdx-1].length;i++)
+              {
+              var ele=document.createElement('option');
+              ele.text=data[selectedIdx-1][i];
+              Dataver.add(ele,i+1);
+              }
+      }
+
+    </script>
+</head>
+
+    <style>
+              input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+              }
+
+              input[type=password], select {
+                      width: 100%;
+                      padding: 12px 20px;
+                      margin: 8px 0;
+                      display: inline-block;
+                      border: 1px solid #ccc;
+                      border-radius: 4px;
+                      box-sizing: border-box;
+                    }
+
+                input[type=date] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+              }
+              input[type=submit] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+              }
+
+              input[type=submit]:hover {
+                background-color: #45a049;
+              }
+
+              div {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+              }
+    </style>
+
+<body onload="fillfirst()">
+  <br><br>
+    <div class="container">
+    <div class="row">
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <h1 align="center" style="color:green;">User Registration System </h1>
+            </div>
+
+            <div class="col-sm-12 col-lg-12">
+              <!-- <form class="" action="index.html" method="post"> -->
+                <input type="text" name="" value="" placeholder="First Name"><br>
+                <input type="text" name="" value=""placeholder="Last Name"><br>
+
+                <select id="type" onchange="fillsecond()">
+                  <option>Select Education level </option>
+                </select>
+                <select  id="data" >
+                  <option>Select</option>
+                </select>
+
+                <input type="date" id="dob" onclick="dobfun()">
+                <input type="password" id="pass" name="" value="" placeholder="Password"><br>
+                <input type="password" id="cpass" name="" value="" placeholder="Confirm Password"><br>
+                <input type="submit" onclick="validation()" name="" value="Submit">
+
+            </div>
+    </div>
+    </div>
+</body>
+
+</html>
